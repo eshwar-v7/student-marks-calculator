@@ -1,1 +1,48 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Marks Calculator</h1>
+        <p>Enter your marks to calculate your result.</p>
+
+        <form method="POST">
+            <label>Student Name</label>
+            <input type="text" name="name" placeholder="Enter your name" required>
+
+            <label>Mathematics Marks</label>
+            <input type="number" name="math" min="0" max="100" required>
+
+            <label>Physics Marks</label>
+            <input type="number" name="phy" min="0" max="100" required>
+
+            <label>Chemistry Marks</label>
+            <input type="number" name="chem" min="0" max="100" required>
+
+            <button type="submit">Calculate Result</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if result %}
+            <div class="result">
+                <h2>Result</h2>
+                <p>Name: {{ result.name }}</p>
+                <p>Total: {{ result.total }} / 300</p>
+                <p>Average: {{ result.average }}%</p>
+                <p>Grade: {{ result.grade }}</p>
+                <p>Status: {{ result.status }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
